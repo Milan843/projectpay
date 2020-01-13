@@ -40,7 +40,7 @@
         "application/json"
     ],
     "paths": {
-        "/login": {
+        "/api/user/login": {
             "post": {
                 "summary": "Login an User",
                 "tags": [
@@ -59,7 +59,7 @@
                 "responses": {}
             }
         },
-        "/forgotPassword": {
+        "/api/user/forgotPassword": {
             "post": {
                 "summary": "Forgot Password",
                 "tags": [
@@ -85,7 +85,7 @@
                 "responses": {}
             }
         },
-        "/changePassword": {
+        "/api/user/changePassword": {
             "post": {
                 "summary": "Change Password",
                 "tags": [
@@ -126,7 +126,7 @@
                 "responses": {}
             }
         },
-        "/register": {
+        "/api/user/register": {
             "post": {
                 "summary": "Create user in the system",
                 "tags": [
@@ -145,7 +145,7 @@
                 "responses": {}
             }
         },
-        "/addDistributor": {
+        "/api/distributor/addDistributor": {
             "post": {
                 "summary": "Create distributor in the system",
                 "tags": [
