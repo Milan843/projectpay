@@ -184,6 +184,7 @@
             }
         },
         "USER_MODEL": {
+            "type":"object",
             "properties": {
                 "personalDetails": {
                     "type":"object",
@@ -261,18 +262,15 @@
                             "type": "string",
                             "example": "Cash/Credit/Debit"
                         }
-                    },
-                        "socialId": {
-                            "type": "string",
-                            "example": "23143"
-                        },
-                        "registerType": {
-                            "type": "string",
-                            "example": "Custom/Google/Facebook"
-                        }
-            
-                    
-                 
+                    }
+                },
+                "socialId": {
+                    "type": "string",
+                    "example": "23143"
+                },
+                "registerType": {
+                    "type": "string",
+                    "example": "Custom/Google/Facebook"
                 }
             }
         },
