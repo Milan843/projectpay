@@ -8,5 +8,5 @@ router.use('/api', swaggerUi.serve);
 router.get('/api', swaggerUi.setup(swaggerDocument));
 const { addDistributor } = require("./controllers/addDistributor")
 
-router.post("/addDistributor",userAuth, addDistributor)
+router.post("/api/distributor/addDistributor",userAuth, addDistributor)
 module.exports = router;

@@ -18,9 +18,9 @@ router.get('/api', swaggerUi.setup(swaggerDocument));
 
 router.get("/verifyemail/:token", verifyEmail)
 router.get("/verify/:token", verify)
-router.post("/register", signup)
+router.post("/api/user/register", signup)
 // router.post("/resetPassword", resetPassword)
-router.post("/changePassword",userAuth, changePassword)
-router.post("/login", login)
-router.post("/forgotPassword", forgotPassword)
+router.post("/api/user/changePassword",userAuth, changePassword)
+router.post("/api/user/login", login)
+router.post("/api/user/forgotPassword", forgotPassword)
 module.exports = router;
