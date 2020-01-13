@@ -9,6 +9,12 @@ const { forgotPassword } = require('./controllers/forgotPassword');
 // const { resetPassword } = require('./controllers/resetPassword');
 const { verify } = require("./controllers/verifyPassword")
 const { verifyEmail } = require("./controllers/verifyEmail")
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../../../swagger.json');
+
+router.use('/api', swaggerUi.serve);
+router.get('/api', swaggerUi.setup(swaggerDocument));
 router.get("/verifyemail/:token", verifyEmail)
 router.get("/verify/:token", verify)
 router.post("/register", signup)

@@ -4,7 +4,7 @@ const bcryptjs = require("bcryptjs")
 const mailer = require("../utils/mailer");
 const signup = async (req, res, next) => {
     try {
-        const { personalDetails, shopDetails, paymentDetails } = req.body
+        const { personalDetails, shopDetails, paymentDetails ,socialId,registerType} = req.body
 
         const email = await pool.query(`Select email FROM mbillUsers WHERE email='${shopDetails.email}'`)
         // console.log(email);
@@ -17,7 +17,7 @@ const signup = async (req, res, next) => {
         personalDetails.password = await bcryptjs.hash(personalDetails.password, 8)
 
 
-        await pool.query("INSERT INTO mbillUsers set ?", [{ ...personalDetails, ...shopDetails, ...paymentDetails }])
+        await pool.query("INSERT INTO mbillUsers set ?", [{ ...personalDetails, ...shopDetails, ...paymentDetails ,socialId,registerType}])
 
         const user = await pool.query(`Select id,email From mbillUsers where email='${shopDetails.email}'`)
         const token = await jwt.sign({ id:user[0].id}, "thisisjwt", { expiresIn: 36000 })
@@ -27,7 +27,7 @@ const signup = async (req, res, next) => {
         res.status(200).json({ message: "Verification link has been sent your registered email .Please check and verify it" })
 
     } catch (error) {
-        res.status(500).json({ msg: `Server error in signup ${e.message}` });
+        res.status(500).json({ msg: `Server error in signup ${error.message}` });
     }
 
 }

@@ -19,7 +19,6 @@ const resetPassword = async (req, res, next) => {
 
 
     } catch (e) {
-        console.log(e.message);
         res.status(500).json("Server error in reset password");
     }
 };

@@ -20,7 +20,7 @@ const forgotPassword = async (req, res, next) => {
 
         res.send('Mail has been sent your registered email.Please check and reset your password')
         next();
-    } catch (err) {
+    } catch (e) {
         res.status(500).json({ msg: `Email does not exist ${e.message}` });
     }
 };

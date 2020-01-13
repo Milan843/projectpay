@@ -7,8 +7,7 @@ const addDistributor = async (req, res, next) => {
         res.status(200).json({ message: "Distributor added successfully" })
 
     } catch (error) {
-        console.log(error.message);
-        res.status(500).send("Server error in add distributor")
+        res.status(500).json(`Server error in reset password ${error.message}`);
     }
 
 }

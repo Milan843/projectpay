@@ -19,7 +19,7 @@ const login = async (req, res, next) => {
         res.json({ user ,token})
 
     } catch (error) {
-        res.status(500).json({ msg: `Server error in login ${e.message}` });
+        res.status(500).json({ msg: `Server error in login ${error.message}` });
     }
 }
 module.exports = { login }
