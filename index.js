@@ -1,5 +1,5 @@
 var path = require('path');
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 3210
 var dotenv = require('dotenv').config(path.resolve(process.cwd(), './.env'));
 
 

@@ -3,7 +3,6 @@ var path = require('path');
 var dotenv = require('dotenv').config(path.resolve(process.cwd(), './.env'));
 let chaiHttp = require("chai-http")
 
-var request = require("request")
 var should = chai.should()
 
 const app = require("../src/app")

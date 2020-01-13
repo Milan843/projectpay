@@ -9,7 +9,7 @@
             "url": ""
         }
     },
-    "host": "localhost:4000",
+    "host": "n1.iworklab.com:3210",
     "basePath": "/",
     "tags": [
         {
