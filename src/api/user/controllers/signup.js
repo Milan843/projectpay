@@ -20,7 +20,7 @@ const signup = async (req, res, next) => {
         await pool.query("INSERT INTO mbillUsers set ?", [{ ...personalDetails, ...shopDetails, ...paymentDetails ,socialId,registerType}])
 
         const user = await pool.query(`Select id,email From mbillUsers where email='${shopDetails.email}'`)
-        const token = await jwt.sign({ id:user[0].id}, "thisisjwt", { expiresIn: 36000 })
+        const token = await jwt.sign({ id: user[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
         const verify = `Click on link to verify your account http://localhost:4000/verifyemail/${token}`;
         const Email = user[0].email;
         await mailer(Email,verify);

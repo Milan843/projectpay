@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const verifyEmail = async (req, res, next) => {
 
     try {
-        const decodedtoken = jwt.decode(req.params.token, "thisisjwt");
+        const decodedtoken = jwt.decode(req.params.token, process.env.SECRET_KEY);
         const id = decodedtoken.id;
 
         const user = await pool.query(`SELECT * FROM mbillUsers WHERE id= '${id}'`);

@@ -12,7 +12,7 @@ const forgotPassword = async (req, res, next) => {
         }
         const id = await pool.query(`Select id From mbillUsers where email='${email}'`)
 
-        const token = await jwt.sign({ id: id[0].id }, "thisisjwt", { expiresIn: 36000 })
+        const token = await jwt.sign({ id: id[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
 
         const userEmail=user[0].email
         const verify = `Click on the link http://localhost:4000/verify/${token}`;

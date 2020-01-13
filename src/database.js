@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const { promisify } = require('util');
 
 var database = {
-    host: "n1.iworklab.com",
-    user: "ajit.pandit_mpay",
-    password: "KL68AUPmkt",
-    database: "ajit.pandit_mpay"
+    host: process.env.DATABASE_HOST ,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME
 };
 
 const pool = mysql.createPool(database);

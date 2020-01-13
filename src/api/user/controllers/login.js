@@ -14,7 +14,7 @@ const login = async (req, res, next) => {
             return res.status(400).send("Invalid credentials")
         }
         const id =await pool.query(`Select id From mbillUsers where email='${email}'`)
-        const token = await jwt.sign({ id: id[0].id }, "thisisjwt", { expiresIn: 36000 })
+        const token = await jwt.sign({ id: id[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
 
         res.json({ user ,token})
 
