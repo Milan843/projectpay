@@ -5,7 +5,7 @@ const login = async (req, res, next) => {
     const { email, password } = req.body
 
     try {
-        const user = await pool.query(`SELECT * FROM mbillUsers WHERE email= '${email}' AND isEmailVerified=1`)
+        const user = await pool.query(`SELECT * FROM mbillUsers WHERE email= '${email}'`)
         if (user.length === 0) {
             return res.status(400).send("Invalid credentials")
         }

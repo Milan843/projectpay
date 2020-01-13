@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const pool = require("../../../database");
-const mailer = require("../utils/mailer");
+const mailer = require("../../../utils/mailer");
 const bcryptjs = require("bcryptjs");
 
 const verify = async (req, res, next) => {

@@ -1,5 +1,5 @@
 const pool = require('../../../database')
-const mailer = require("../utils/mailer");
+const mailer = require("../../../utils/mailer");
 const jwt = require("jsonwebtoken");
 
 const forgotPassword = async (req, res, next) => {

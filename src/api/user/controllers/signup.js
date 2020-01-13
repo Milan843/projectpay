@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const pool = require('../../../database')
 const bcryptjs = require("bcryptjs")
-const mailer = require("../utils/mailer");
+const mailer = require("../../../utils/mailer");
 const signup = async (req, res, next) => {
     try {
         const { personalDetails, shopDetails, paymentDetails ,socialId,registerType} = req.body
@@ -23,7 +23,7 @@ const signup = async (req, res, next) => {
         const token = await jwt.sign({ id: user[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
         const verify = `Click on link to verify your account http://localhost:4000/verifyemail/${token}`;
         const Email = user[0].email;
-        await mailer(Email,verify);
+       // await mailer(Email,verify);
         res.status(200).json({ message: "Verification link has been sent your registered email .Please check and verify it" })
 
     } catch (error) {
