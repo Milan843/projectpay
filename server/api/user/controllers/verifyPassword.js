@@ -1,6 +1,8 @@
+var Services = require('./../../../service/network');
 const jwt = require("jsonwebtoken");
-const pool = require("../../../database");
+const pool = require("./../../../config/database");
 const mailer = require("../../../utils/mailer");
+var _ = require("lodash");
 const bcryptjs = require("bcryptjs");
 
 const verify = async (req, res, next) => {
@@ -11,7 +13,7 @@ const verify = async (req, res, next) => {
         const user = await pool.query(`SELECT * FROM mbillUsers WHERE id= '${id}'`);
 
         if (user.length === 0) {
-            return res.status(400).json({ msg: "User does not exist" });
+            return Services._handleError(res, "User does not exists");
         }
 
         const userEmail = user[0].email;
@@ -25,11 +27,9 @@ const verify = async (req, res, next) => {
             `UPDATE mbillUsers SET password='${hashedpassword}' , confirmPassword='${password}' WHERE id= '${id}'`
         );
 
-        res.json({ msg: "Mail Sent" });
+        return Services._response(res, "Mail Sent");
     } catch (error) {
-        res
-            .status(500)
-            .json({ msg: `server error in verify password  ${error.message}` });
+        return Services._handleError(res, error);
     }
 };
 module.exports = { verify };

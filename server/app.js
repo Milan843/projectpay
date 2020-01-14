@@ -1,12 +1,15 @@
 var path = require('path');
-const port = process.env.PORT || 3210
 var dotenv = require('dotenv').config(path.resolve(process.cwd(), './.env'));
+const port = process.env.PORT || 3210;
+const express = require('express');
+const app = express();
 
 
-const app = require('./src/app');
-
+app.use(express.json())
+require('./routes')(app)
 
 
 app.listen(port, () => {
     console.log('Server is running at port ' + port)
 })
+exports=module.exports = app;

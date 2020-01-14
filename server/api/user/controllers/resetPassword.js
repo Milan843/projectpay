@@ -1,5 +1,7 @@
+var Services = require('./../../../service/network');
 const bcryptjs = require("bcryptjs");
-const pool = require('../../../database')
+const pool = require('./../../../config/database')
+var _ = require("lodash");
 const resetPassword = async (req, res, next) => {
 
     try {
@@ -8,18 +10,19 @@ const resetPassword = async (req, res, next) => {
         let { newPassword, confirmPassword} = req.body
         const user = await pool.query(`SELECT * FROM mbillUsers WHERE id= '${id}'`)
         if (user.length === 0) {
-            return res.status(400).send("Token Invalid")
+            return Services._handleError(res, error, "Token Invalid");
         }
+    
 
         newPassword = await bcryptjs.hash(newPassword, 8);
 
         await pool.query(`UPDATE mbillUsers SET password='${newPassword}' , confirmPassword='${confirmPassword}' WHERE id='${id}'`)
 
-        res.status(200).send("Password changed successfully");
+        return Services._response(res, "Password Set succesfully");
 
 
-    } catch (e) {
-        res.status(500).json("Server error in reset password");
+    } catch (error) {
+        return Services._handleError(res, error,"Server error in reset password");
     }
 };
 module.exports = { resetPassword };

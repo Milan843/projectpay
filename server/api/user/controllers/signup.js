@@ -1,7 +1,9 @@
+var Services = require('./../../../service/network');
 const jwt = require("jsonwebtoken");
-const pool = require('../../../database')
+const pool = require('./../../../config/database')
 const bcryptjs = require("bcryptjs")
 const mailer = require("../../../utils/mailer");
+var _ = require("lodash");
 const signup = async (req, res, next) => {
     try {
         const { personalDetails, shopDetails, paymentDetails ,socialId,registerType} = req.body
@@ -10,7 +12,7 @@ const signup = async (req, res, next) => {
         // console.log(email);
 
         if (email.length !== 0) {
-            return res.status(400).send("User already exists.")
+            return Services._handleError(res, "User already exists");
         }
 
 
@@ -24,10 +26,10 @@ const signup = async (req, res, next) => {
         const verify = `Click on link to verify your account http://localhost:4000/verifyemail/${token}`;
         const Email = user[0].email;
        // await mailer(Email,verify);
-        res.status(200).json({ message: "Verification link has been sent your registered email .Please check and verify it" })
+        return Services._response(res, "Verification link has been sent your registered email .Please check and verify it");
 
     } catch (error) {
-        res.status(500).json({ msg: `Server error in signup ${error.message}` });
+        return Services._handleError(res, error);
     }
 
 }

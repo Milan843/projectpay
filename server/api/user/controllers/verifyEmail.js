@@ -1,5 +1,7 @@
-const pool = require('../../../database')
+var Services = require('./../../../service/network');
+const pool = require('./../../../config/database')
 const jwt = require("jsonwebtoken");
+var _ = require("lodash");
 const verifyEmail = async (req, res, next) => {
 
     try {
@@ -9,19 +11,19 @@ const verifyEmail = async (req, res, next) => {
         const user = await pool.query(`SELECT * FROM mbillUsers WHERE id= '${id}'`);
 
         if (user.length === 0) {
-            return res.status(400).json({ msg: "Invalid data" });
+            return Services._handleError(res, "Invalid Data");
         }
         if (user[0].isEmailVerified === 1) {
-            return res.status(400).json({ msg: "Invalid Link" })
+            return Services._handleError(res, "Invalid Link");
         }
 
         await pool.query(`UPDATE mbillUsers SET isEmailVerified=1 WHERE id='${id}'`)
 
-        res.status(200).send("Email Verified Successfully");
+        return Services._response(res, "Email Verified Successfully");
 
 
-    } catch (e) {
-        res.status(500).json({msg:`Server error in email verification ${e.message}`});
+    } catch (error) {
+        return Services._handleError(res, error);
     }
 };
 module.exports = { verifyEmail };
