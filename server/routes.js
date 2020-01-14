@@ -17,7 +17,7 @@ module.exports = function (app) {
     app.use('/api/user', require('./api/user'));
     app.use('/api/distributor', require('./api/distributor'));
 
-   
+
     // All other routes should redirect to the index.html
     // app.route('/*')
     //     .get(function (req, res) {

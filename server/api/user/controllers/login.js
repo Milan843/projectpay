@@ -4,10 +4,10 @@ const jwt = require("jsonwebtoken")
 const bcryptjs = require("bcryptjs")
 var _ = require("lodash");
 const login = async (req, res, next) => {
-    const { userName, password } = req.body
+    const { email, password } = req.body
 
     try {
-        const user = await pool.query(`SELECT * FROM mbillUsers WHERE userName= '${userName}'`)
+        const user = await pool.query(`SELECT * FROM mbillUsers WHERE email= '${email}'`)
         if (user.length === 0) {
             return Services._handleError(res, "Invalid credentials");
         }
@@ -15,7 +15,7 @@ const login = async (req, res, next) => {
         if (!isMatch) {
             return Services._handleError(res, "Invalid credentials");
         }
-        const id = await pool.query(`Select id From mbillUsers where userName='${userName}'`)
+        const id = await pool.query(`Select id From mbillUsers where email='${email}'`)
         const token = await jwt.sign({ id: id[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
         Services._response(res, { user, token }, "Login Successfully");
 
