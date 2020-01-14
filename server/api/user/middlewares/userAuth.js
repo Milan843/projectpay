@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken")
 module.exports = function (req, res, next) {
     const token = req.header("x-auth-token")
     if (!token) {
-        return Services._handleError(res, error, "No token,authorization failed" );
+        return Services._handleError(res, "No token,authorization failed" );
     }
     try {
-        const decoded = jwt.verify(token, "thisisjwt")
+        const decoded = jwt.verify(token, process.env.SECRET_KEY)
         req.id = decoded.id  
         next()
 
     } catch (error) {
-        return Services._handleError(res, error, "Token is not valid");
+        Services._handleError(res, error.message, "Token is not valid");
     }
 }

@@ -18,10 +18,10 @@ const forgotPassword = async (req, res, next) => {
         const userEmail=user[0].email
         const verify = `Click on the link http://localhost:4000/verify/${token}`;
         await mailer(userEmail, verify);
-        return Services._response(res, "Mail has been sent your registered email.Please check and reset your password");
+        Services._response(res,{}, "Mail has been sent your registered email.Please check and reset your password");
         next();
     } catch (error) {
-        return Services._handleError(res, error);
+        Services._handleError(res, error.message);
     }
 };
 

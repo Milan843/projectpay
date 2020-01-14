@@ -18,11 +18,11 @@ const resetPassword = async (req, res, next) => {
 
         await pool.query(`UPDATE mbillUsers SET password='${newPassword}' , confirmPassword='${confirmPassword}' WHERE id='${id}'`)
 
-        return Services._response(res, "Password Set succesfully");
+        Services._response(res,{}, "Password Set succesfully");
 
 
     } catch (error) {
-        return Services._handleError(res, error,"Server error in reset password");
+        Services._handleError(res, error.message,"Server error in reset password");
     }
 };
 module.exports = { resetPassword };

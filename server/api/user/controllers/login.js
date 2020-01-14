@@ -17,10 +17,10 @@ const login = async (req, res, next) => {
         }
         const id = await pool.query(`Select id From mbillUsers where userName='${userName}'`)
         const token = await jwt.sign({ id: id[0].id }, process.env.SECRET_KEY, { expiresIn: 36000 })
-        return Services._response(res, { user, token }, "Login Successfully");
+        Services._response(res, { user, token }, "Login Successfully");
 
     } catch (error) {
-        return Services._handleError(res, error);
+        Services._handleError(res, error.message);
     }
 }
 module.exports = { login }

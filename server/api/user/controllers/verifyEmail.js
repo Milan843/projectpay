@@ -19,11 +19,11 @@ const verifyEmail = async (req, res, next) => {
 
         await pool.query(`UPDATE mbillUsers SET isEmailVerified=1 WHERE id='${id}'`)
 
-        return Services._response(res, "Email Verified Successfully");
+        Services._response(res, "Email Verified Successfully");
 
 
     } catch (error) {
-        return Services._handleError(res, error);
+        Services._handleError(res, error.message);
     }
 };
 module.exports = { verifyEmail };

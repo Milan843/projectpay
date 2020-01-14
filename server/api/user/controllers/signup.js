@@ -26,10 +26,10 @@ const signup = async (req, res, next) => {
         const verify = `Click on link to verify your account http://localhost:4000/verifyemail/${token}`;
         const Email = user[0].email;
        // await mailer(Email,verify);
-        return Services._response(res, "Verification link has been sent your registered email .Please check and verify it");
+        Services._response(res, {},"Verification link has been sent your registered email .Please check and verify it");
 
     } catch (error) {
-        return Services._handleError(res, error);
+        Services._handleError(res, error.message);
     }
 
 }

@@ -22,11 +22,11 @@ const changePassword = async (req, res, next) => {
 
         await pool.query(`UPDATE mbillUsers SET password='${newPassword}' , confirmPassword='${confirmPassword}' WHERE id='${req.id}'`)
 
-        return Services._response(res, "Password Changed Successfully");
+        return Services._response(res, {}, "Password Changed Successfully");
 
 
     } catch (error) {
-        return Services._handleError(res, error);
+        return Services._handleError(res, error.message);
     }
 };
 module.exports = { changePassword };
