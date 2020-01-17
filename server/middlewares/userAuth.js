@@ -1,4 +1,4 @@
-var Services = require('./../../../service/network');
+var Services = require('./../service/network');
 var _ = require("lodash");
 const jwt = require("jsonwebtoken")
 module.exports = function (req, res, next) {

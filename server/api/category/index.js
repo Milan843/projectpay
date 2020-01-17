@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const userAuth = require("../../../server/middlewares/userAuth")
 
-const { addDistributor } = require("./controllers/addDistributor")
+const { categoryList } = require("./controllers/getCategory")
 
-router.post("/addDistributor",userAuth, addDistributor)
+router.get("/categoryList", userAuth, categoryList)
 module.exports = router;

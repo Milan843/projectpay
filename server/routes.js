@@ -3,7 +3,8 @@
  */
 
 'use strict';
-
+const express = require("express")
+const router = express.Router()
 var path = require('path');
 
 module.exports = function (app) {
@@ -16,7 +17,7 @@ module.exports = function (app) {
     // Insert routes below
     app.use('/api/user', require('./api/user'));
     app.use('/api/distributor', require('./api/distributor'));
-
+    app.use('/api/category', require('./api/category'));
 
     // All other routes should redirect to the index.html
     // app.route('/*')

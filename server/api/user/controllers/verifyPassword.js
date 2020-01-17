@@ -1,7 +1,7 @@
 var Services = require('./../../../service/network');
 const jwt = require("jsonwebtoken");
 const pool = require("./../../../config/database");
-const mailer = require("../../../utils/mailer");
+const mailer = require("../../../service/mailer");
 var _ = require("lodash");
 const bcryptjs = require("bcryptjs");
 

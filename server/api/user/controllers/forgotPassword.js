@@ -1,6 +1,6 @@
 var Services = require('./../../../service/network');
 const pool = require('./../../../config/database')
-const mailer = require("../../../utils/mailer");
+const mailer = require("../../../service/mailer");
 const jwt = require("jsonwebtoken");
 var _ = require("lodash");
 const forgotPassword = async (req, res, next) => {

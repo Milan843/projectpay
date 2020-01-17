@@ -5,7 +5,7 @@ let chaiHttp = require("chai-http")
 
 var should = chai.should()
 
-const app = require("../src/app")
+const app = require("../server/routes")
 
 chai.use(chaiHttp)
 
@@ -16,7 +16,7 @@ describe("Post/login", function () {
             .post("/login")
             .send({
                 email: "paramjeet.kaur@mail.vinove.com",
-                password: "Pankaj2020"
+                password: "1234567"
             })
             .set("Accept", "application/json")
             .end(function (err, res) {
